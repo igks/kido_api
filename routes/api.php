@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('/v1')->middleware(['custom.auth'])->group(function () {
+    Route::get('categories', 'App\Http\Controllers\ApiController@categories');
+    Route::get('titles/{categories_id}', 'App\Http\Controllers\ApiController@titleByCategory');
+    Route::get('contents/{title_id}', 'App\Http\Controllers\ApiController@contentByTitle');
+    Route::get('contents/{id}/show', 'App\Http\Controllers\ApiController@contentById');
+    Route::post('favorites', 'App\Http\Controllers\ApiController@favorites');
+    Route::post('search', 'App\Http\Controllers\ApiController@search');
+});
+
+Route::prefix('/v1/admin')->middleware(['custom.auth'])->group(function () {
+    Route::get('categories', 'App\Http\Controllers\ApiController@categories');
+    Route::get('titles/{categories_id}', 'App\Http\Controllers\ApiController@titleByCategory');
+    Route::get('contents/{title_id}', 'App\Http\Controllers\ApiController@contentByTitle');
+    Route::get('contents/{id}/show', 'App\Http\Controllers\ApiController@contentById');
+    Route::post('favorites', 'App\Http\Controllers\ApiController@favorites');
+    Route::post('search', 'App\Http\Controllers\ApiController@search');
 });
