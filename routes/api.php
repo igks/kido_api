@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TitleController;
+use App\Http\Controllers\ContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +50,11 @@ Route::prefix('v1/admin')->middleware(['auth:api'])->group(function () {
     Route::post('titles', [TitleController::class, 'create']);
     Route::put('titles/{id}', [TitleController::class, 'update']);
     Route::delete('titles/{id}', [TitleController::class, 'delete']);
+
+    // Content
+    Route::get('contents/by-title/{id}', [ContentController::class, 'getByTitle']);
+    Route::get('contents/{id}', [ContentController::class, 'getOne']);
+    Route::post('contents', [ContentController::class, 'create']);
+    Route::put('contents/{id}', [ContentController::class, 'update']);
+    Route::delete('contents/{id}', [ContentController::class, 'delete']);
 });
