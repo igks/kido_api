@@ -15,7 +15,7 @@ class ApiController extends Controller
         return response()->json([
             'is_success' => true,
             'data' => $categories
-        ]);
+        ], 200);
     }
 
     public function titleByCategory($categoriesId)
@@ -24,7 +24,7 @@ class ApiController extends Controller
         return response()->json([
             'is_success' => true,
             'data' => $titles
-        ]);
+        ], 200);
     }
 
     public function contentByTitle($titleId)
@@ -33,7 +33,7 @@ class ApiController extends Controller
         return response()->json([
             'is_success' => true,
             'data' => $contents
-        ]);
+        ], 200);
     }
 
     public function contentById($id)
@@ -42,14 +42,14 @@ class ApiController extends Controller
         if ($content == null) {
             return response()->json([
                 'is_success' => false,
-                'data' => $content
-            ]);
+                'data' => null
+            ], 404);
         }
 
         return response()->json([
             'is_success' => true,
             'data' => $content
-        ]);
+        ], 200);
     }
 
     public function favorites(Request $request)
@@ -60,7 +60,7 @@ class ApiController extends Controller
         return response()->json([
             'is_success' => true,
             'data' => $contents
-        ]);
+        ], 200);
     }
 
     public function search(Request $request)
@@ -74,6 +74,6 @@ class ApiController extends Controller
         return response()->json([
             'is_success' => true,
             'data' => $contents
-        ]);
+        ], 200);
     }
 }
