@@ -29,6 +29,7 @@ Route::prefix('/v1')->middleware(['custom.auth'])->group(function () {
 Route::prefix('v1/auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+
     Route::middleware(['auth:api'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::post('/refresh', [AuthController::class, 'refresh']);
@@ -42,19 +43,19 @@ Route::prefix('v1/admin')->middleware(['auth:api'])->group(function () {
     Route::get('categories/{id}', [CategoryController::class, 'getOne']);
     Route::post('categories', [CategoryController::class, 'create']);
     Route::put('categories/{id}', [CategoryController::class, 'update']);
-    Route::delete('categories/{id}', [CategoryController::class, 'delete']);
+    // Route::delete('categories/{id}', [CategoryController::class, 'delete']);
 
     // Title
     Route::get('titles/by-category/{id}', [TitleController::class, 'getByCategory']);
     Route::get('titles/{id}', [TitleController::class, 'getOne']);
     Route::post('titles', [TitleController::class, 'create']);
     Route::put('titles/{id}', [TitleController::class, 'update']);
-    Route::delete('titles/{id}', [TitleController::class, 'delete']);
+    // Route::delete('titles/{id}', [TitleController::class, 'delete']);
 
     // Content
     Route::get('contents/by-title/{id}', [ContentController::class, 'getByTitle']);
     Route::get('contents/{id}', [ContentController::class, 'getOne']);
     Route::post('contents', [ContentController::class, 'create']);
     Route::put('contents/{id}', [ContentController::class, 'update']);
-    Route::delete('contents/{id}', [ContentController::class, 'delete']);
+    // Route::delete('contents/{id}', [ContentController::class, 'delete']);
 });

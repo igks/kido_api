@@ -11,7 +11,7 @@ class Content extends Model
 
     protected $table = "contents";
 
-    protected $fillable = ['title_id', 'content', 'meaning','description', 'sequence'];
+    protected $fillable = ['title_id', 'content', 'meaning', 'description', 'sequence'];
 
     public static function rules($merge = [])
     {
