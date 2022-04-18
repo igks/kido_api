@@ -24,6 +24,8 @@ Route::prefix('/v1')->middleware(['custom.auth'])->group(function () {
     Route::get('contents/{id}/show', 'App\Http\Controllers\ApiController@contentById');
     Route::post('favorites', 'App\Http\Controllers\ApiController@favorites');
     Route::post('search', 'App\Http\Controllers\ApiController@search');
+    Route::get('logs', 'App\Http\Controllers\ApiController@reqLog');
+    Route::get('top', 'App\Http\Controllers\ApiController@topRequest');
 });
 
 Route::prefix('v1/auth')->group(function () {
@@ -58,4 +60,7 @@ Route::prefix('v1/admin')->middleware(['auth:api'])->group(function () {
     Route::post('contents', [ContentController::class, 'create']);
     Route::put('contents/{id}', [ContentController::class, 'update']);
     // Route::delete('contents/{id}', [ContentController::class, 'delete']);
+
+    Route::get('logs', 'App\Http\Controllers\ApiController@reqLog');
+    Route::get('top', 'App\Http\Controllers\ApiController@topRequest');
 });

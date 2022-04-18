@@ -24,7 +24,18 @@ class Title extends Model
         );
     }
 
-    public function content(){
+    public function content()
+    {
         return $this->hasMany(Content::class);
+    }
+
+    public function reqLog()
+    {
+        return $this->hasMany(ReqLogs::class);
+    }
+
+    public static function getName($id)
+    {
+        return Title::find($id)->title;
     }
 }
