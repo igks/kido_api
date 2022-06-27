@@ -134,7 +134,7 @@ class ApiController extends Controller
 
         $result = [];
         foreach ($raws as $key => $value) {
-            $result[] = Title::getName($key);
+            $result[] = ["id" => $key, "name" => Title::getName($key)];
         }
 
         return response()->json([
